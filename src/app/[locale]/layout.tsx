@@ -4,6 +4,7 @@ import { lexendDeca } from '@/lib/fonts'
 import { serverSideTranslation } from '@/lib/i18n'
 import { I18nProvider } from '@/components/i18n/I18nProvider'
 import { Navbar } from '@/components/layout'
+import { SmoothScrollProvider } from '@/components/animations'
 import '../globals.css'
 
 
@@ -61,10 +62,12 @@ export default async function LocaleLayout({
         className={`${lexendDeca.className} antialiased min-h-screen text-foreground`}
       >
         <I18nProvider locale={locale} namespaces={['common', 'home']} resources={resources}>
-          <Navbar />
-          <main id="main-content">
-            {children}
-          </main>
+          <SmoothScrollProvider>
+            <Navbar />
+            <main id="main-content">
+              {children}
+            </main>
+          </SmoothScrollProvider>
         </I18nProvider>
       </body>
     </html>
