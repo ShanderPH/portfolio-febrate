@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "greeting": "Olá, eu sou",
+    "name": "Felipe Braat",
+    "roles": ["Desenvolvedor Full Stack", "Especialista em Automação", "Entusiasta de IA"],
+    "tagline": "Transformando ideias em soluções digitais elegantes e funcionais",
+    "cta": "Conheça meu trabalho",
+    "lines": {
+      "intro": "Olá, eu sou Felipe Braat.",
+      "notJust": "Não apenas um Engenheiro de Software.",
+      "problemSolver": "Mas um solucionador de problemas."
+    },
+    "scrollIndicator": "Role para explorar",
+    "marqueeItems": ["Desenvolvedor Full Stack", "Engenheiro de Software", "Solucionador de Problemas", "Entusiasta de IA", "Automação", "Inovação"]
+  },
+  "about": {
+    "label": "Engenheiro de Software",
+    "firstName": "Felipe",
+    "lastName": "Braat",
+    "description": "Engenheiro de Software com 3+ anos de experiência em TypeScript, Python e sistemas orientados a IA. Histórico comprovado de engenharia de pipelines automatizados de qualidade que reduziram o tempo de primeira resposta em 48% e economizaram 350+ horas de engenharia anualmente.",
+    "cta": "Conectar no LinkedIn",
+    "highlights": {
+      "responseTime": "Redução no FRT",
+      "hoursSaved": "Horas salvas/ano",
+      "experience": "Anos de experiência",
+      "csat": "CSAT alcançado"
+    }
+  },
+  "skills": {
+    "title": "Skills & Tecnologias",
+    "subtitle": "As ferramentas e tecnologias que uso para construir soluções de impacto"
+  },
+  "services": {
+    "title": "Serviços",
+    "items": [
+      {
+        "title": "Desenvolvimento Web",
+        "description": "Criação de aplicações web modernas e responsivas utilizando as tecnologias mais recentes."
+      },
+      {
+        "title": "Automação",
+        "description": "Automatização de processos para aumentar a eficiência e reduzir custos operacionais."
+      },
+      {
+        "title": "Inteligência Artificial",
+        "description": "Implementação de soluções de IA para otimizar processos e gerar insights valiosos."
+      }
+    ]
+  },
+  "featuredProjects": {
+    "title": "Projetos em Destaque",
+    "viewAll": "Ver Todos os Projetos"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Felipe Braat",
+    "roles": ["Full Stack Developer", "Automation Specialist", "AI Enthusiast"],
+    "tagline": "Transforming ideas into elegant and functional digital solutions",
+    "cta": "Explore my work",
+    "lines": {
+      "intro": "Hello, I'm Felipe Braat.",
+      "notJust": "Not just a Software Engineer.",
+      "problemSolver": "But a problem solver."
+    },
+    "scrollIndicator": "Scroll to explore",
+    "marqueeItems": ["Full Stack Developer", "Software Engineer", "Problem Solver", "AI Enthusiast", "Automation", "Innovation"]
+  },
+  "about": {
+    "label": "Software Engineer",
+    "firstName": "Felipe",
+    "lastName": "Braat",
+    "description": "Software Engineer with 3+ years of experience specializing in TypeScript, Python, and AI-driven systems. Proven track record of engineering automated quality pipelines that reduced first response time by 48% and saved 350+ engineering hours annually.",
+    "cta": "Connect on LinkedIn",
+    "highlights": {
+      "responseTime": "FRT reduction",
+      "hoursSaved": "Hours saved/year",
+      "experience": "Years of experience",
+      "csat": "CSAT achieved"
+    }
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "subtitle": "The tools and technologies I use to build impactful solutions"
+  },
+  "services": {
+    "title": "Services",
+    "items": [
+      {
+        "title": "Web Development",
+        "description": "Building modern and responsive web applications using the latest technologies."
+      },
+      {
+        "title": "Automation",
+        "description": "Process automation to increase efficiency and reduce operational costs."
+      },
+      {
+        "title": "Artificial Intelligence",
+        "description": "Implementing AI solutions to optimize processes and generate valuable insights."
+      }
+    ]
+  },
+  "featuredProjects": {
+    "title": "Featured Projects",
+    "viewAll": "View All Projects"
+  }
+}

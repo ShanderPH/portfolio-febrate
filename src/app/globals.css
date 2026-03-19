@@ -1,26 +1,302 @@
 @import "tailwindcss";
+@import "@heroui/styles";
+
+/*
+ * Febrate Portfolio - Custom Earth-Tone Theme
+ * Soft, neutral, low-saturation colors with earth tones
+ * Adapted for light and dark themes
+ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primitive Colors - Shared between light and dark */
+  --white: oklch(100% 0 0);
+  --black: oklch(0% 0 0);
+  --snow: oklch(0.9911 0 0);
+  --eclipse: oklch(0.2103 0.0059 285.89);
+  
+  /* Earth-Tone Primitives */
+  --stone-50: oklch(0.985 0.002 75);
+  --stone-100: oklch(0.97 0.004 75);
+  --stone-200: oklch(0.92 0.006 70);
+  --stone-300: oklch(0.87 0.008 65);
+  --stone-400: oklch(0.70 0.012 60);
+  --stone-500: oklch(0.55 0.015 55);
+  --stone-600: oklch(0.45 0.015 50);
+  --stone-700: oklch(0.35 0.012 45);
+  --stone-800: oklch(0.25 0.010 40);
+  --stone-900: oklch(0.18 0.008 35);
+  --stone-950: oklch(0.12 0.006 30);
+  
+  /* Warm Earth Accent */
+  --earth-accent: oklch(0.58 0.12 55);
+  --earth-accent-light: oklch(0.68 0.10 55);
+  --earth-accent-dark: oklch(0.48 0.14 55);
+  
+  /* Sage Green for Success */
+  --sage: oklch(0.65 0.08 145);
+  --sage-light: oklch(0.75 0.06 145);
+  
+  /* Warm Amber for Warning */
+  --amber: oklch(0.75 0.12 75);
+  --amber-light: oklch(0.82 0.10 75);
+  
+  /* Muted Terracotta for Danger */
+  --terracotta: oklch(0.58 0.14 30);
+  --terracotta-light: oklch(0.68 0.12 30);
+  
+  /* Spacing */
+  --spacing: 0.25rem;
+  
+  /* Default font families - LexendDeca */
+  --default-font-family: var(--font-lexend-deca), ui-sans-serif, system-ui, sans-serif;
+  --default-mono-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  /* Font weights for semantic usage */
+  --font-weight-light: 200;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
 }
 
-@theme inline {
+/* Light Theme (Default) */
+:root,
+html:not(.dark):not([data-theme="dark"]) {
+  /* Base Colors */
+  --background: var(--stone-50);
+  --foreground: var(--stone-900);
+  
+  /* Surface Colors */
+  --surface: var(--white);
+  --surface-foreground: var(--foreground);
+  
+  /* Overlay Colors */
+  --overlay: var(--white);
+  --overlay-foreground: var(--foreground);
+  
+  /* Muted */
+  --muted: var(--stone-500);
+  --scrollbar: var(--stone-300);
+  
+  /* Default (neutral backgrounds) */
+  --default: var(--stone-100);
+  --default-foreground: var(--stone-900);
+  
+  /* Accent - Warm Earth Brown */
+  --accent: var(--earth-accent);
+  --accent-foreground: var(--snow);
+  
+  /* Form Fields */
+  --field-background: var(--white);
+  --field-on-background: var(--stone-100);
+  --field-foreground: var(--stone-900);
+  --field-placeholder: var(--muted);
+  --field-border: transparent;
+  
+  /* Status Colors */
+  --success: var(--sage);
+  --success-foreground: var(--stone-900);
+  --warning: var(--amber);
+  --warning-foreground: var(--stone-900);
+  --danger: var(--terracotta);
+  --danger-foreground: var(--snow);
+  
+  /* Component Colors */
+  --segment: var(--white);
+  --segment-foreground: var(--stone-900);
+  
+  /* Misc */
+  --border: oklch(0 0 0 / 0%);
+  --separator: var(--stone-200);
+  --focus: var(--accent);
+  --link: var(--foreground);
+  
+  /* Shadows */
+  --surface-shadow: 0 2px 8px 0 rgba(60, 50, 40, 0.06), 0 1px 3px 0 rgba(60, 50, 40, 0.08);
+  --overlay-shadow: 0 4px 16px 0 rgba(60, 50, 40, 0.08), 0 8px 24px 0 rgba(60, 50, 40, 0.10);
+  --field-shadow: 0 1px 2px 0 rgba(60, 50, 40, 0.04), 0 0 1px 0 rgba(60, 50, 40, 0.06);
+  
+  /* Border & Radius */
+  --border-width: 0px;
+  --field-border-width: var(--border-width);
+  --disabled-opacity: 0.5;
+  --ring-offset-width: 2px;
+  --cursor-interactive: pointer;
+  --cursor-disabled: not-allowed;
+  --radius: 0.5rem;
+  --field-radius: calc(var(--radius) * 1.5);
+  
+  /* Skeleton Animation */
+  --skeleton-animation: shimmer;
+}
+
+/* Dark Theme */
+html.dark,
+html[data-theme="dark"],
+.dark {
+  /* Base Colors */
+  --background: var(--stone-950);
+  --foreground: var(--stone-100);
+  
+  /* Surface Colors */
+  --surface: var(--stone-900);
+  --surface-foreground: var(--foreground);
+  
+  /* Overlay Colors */
+  --overlay: oklch(0.22 0.008 40);
+  --overlay-foreground: var(--foreground);
+  
+  /* Muted */
+  --muted: var(--stone-400);
+  --scrollbar: var(--stone-600);
+  
+  /* Default (neutral backgrounds) */
+  --default: var(--stone-800);
+  --default-foreground: var(--stone-100);
+  
+  /* Accent - Warm Earth Brown (slightly lighter for dark mode) */
+  --accent: var(--earth-accent-light);
+  --accent-foreground: var(--stone-950);
+  
+  /* Form Fields */
+  --field-background: var(--default);
+  --field-on-background: var(--surface);
+  --field-foreground: var(--foreground);
+  --field-placeholder: var(--muted);
+  
+  /* Status Colors */
+  --success: var(--sage-light);
+  --success-foreground: var(--stone-900);
+  --warning: var(--amber-light);
+  --warning-foreground: var(--stone-900);
+  --danger: var(--terracotta-light);
+  --danger-foreground: var(--snow);
+  
+  /* Component Colors */
+  --segment: var(--stone-700);
+  --segment-foreground: var(--foreground);
+  
+  /* Misc */
+  --border: oklch(1 0 0 / 0%);
+  --separator: var(--stone-800);
+  --focus: var(--accent);
+  --link: var(--foreground);
+  
+  /* Shadows - Transparent in dark mode */
+  --surface-shadow: 0 0 0 0 transparent inset;
+  --overlay-shadow: 0 0 0 0 transparent inset;
+  --field-shadow: 0 0 0 0 transparent inset;
+}
+
+/* Smooth theme transition */
+html {
+  color-scheme: light dark;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark,
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Base html background - matches shader gradient for seamless appearance */
+html {
+  background: linear-gradient(135deg, 
+    oklch(0.35 0.05 55) 0%, 
+    oklch(0.28 0.04 45) 50%, 
+    oklch(0.22 0.03 35) 100%
+  );
+  background-attachment: fixed;
+}
+
+html.light,
+html[data-theme="light"] {
+  background: linear-gradient(135deg, 
+    oklch(0.85 0.03 75) 0%, 
+    oklch(0.78 0.04 65) 50%, 
+    oklch(0.70 0.05 55) 100%
+  );
+  background-attachment: fixed;
+}
+
+/* Base body styles */
+body {
+  background-color: transparent;
+  color: var(--foreground);
+  font-family: var(--font-lexend-deca), var(--default-font-family);
+  font-weight: var(--font-weight-medium);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography - LexendDeca font weights */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+}
+
+.font-bold, .font-semibold {
+  font-weight: var(--font-weight-bold) !important;
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium) !important;
+}
+
+.font-light, .font-extralight {
+  font-weight: var(--font-weight-light) !important;
+}
+
+/* Custom Tailwind theme extensions */
+/* stylelint-disable-next-line at-rule-no-unknown */
+@theme {
+  /* Earth-tone color scale for Tailwind utilities */
+  --color-earth-50: var(--stone-50);
+  --color-earth-100: var(--stone-100);
+  --color-earth-200: var(--stone-200);
+  --color-earth-300: var(--stone-300);
+  --color-earth-400: var(--stone-400);
+  --color-earth-500: var(--stone-500);
+  --color-earth-600: var(--stone-600);
+  --color-earth-700: var(--stone-700);
+  --color-earth-800: var(--stone-800);
+  --color-earth-900: var(--stone-900);
+  --color-earth-950: var(--stone-950);
+  
+  /* Semantic colors for Tailwind */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  
+  /* Animation easing functions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-fluid: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Easing functions for HeroUI components */
+:root {
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-linear: linear;
+}
+
+/* Marquee animation */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.marquee-pause-on-hover:hover {
+  animation-play-state: paused;
 }

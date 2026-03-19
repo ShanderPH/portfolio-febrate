@@ -1,0 +1,49 @@
+{
+  "title": "Sobre Mí",
+  "subtitle": "Conoce mi trayectoria y habilidades",
+  "bio": {
+    "paragraphs": [
+      "Soy un desarrollador full stack apasionado por la tecnología y la innovación.",
+      "Con experiencia en diversas tecnologías, siempre busco entregar soluciones de alta calidad.",
+      "Mi enfoque está en crear experiencias digitales que marcan la diferencia."
+    ]
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "items": [
+      {
+        "company": "Empresa Ejemplo",
+        "role": "Desarrollador Full Stack",
+        "period": "2022 - Presente",
+        "description": "Desarrollo de aplicaciones web y automatización de procesos."
+      }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades",
+    "categories": [
+      {
+        "name": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+      },
+      {
+        "name": "Backend",
+        "items": ["Node.js", "Python", "Django", "PostgreSQL"]
+      },
+      {
+        "name": "Herramientas",
+        "items": ["Git", "Docker", "AWS", "Vercel"]
+      }
+    ]
+  },
+  "education": {
+    "title": "Formación",
+    "items": [
+      {
+        "institution": "Universidad Ejemplo",
+        "degree": "Licenciatura en Ciencias de la Computación",
+        "period": "2018 - 2022"
+      }
+    ]
+  }
+}

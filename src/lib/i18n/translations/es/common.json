@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "madeWith": "Hecho con",
+    "tagline": "Construyendo sistemas impulsados por IA que eliminan el trabajo manual a escala.",
+    "location": "Serra, ES, Brasil",
+    "navigation": "Navegación",
+    "connect": "Conectar",
+    "builtWith": "Construido con Next.js 16, HeroUI V3 & Tailwind CSS V4"
+  },
+  "locale": {
+    "switchTo": "Cambiar idioma a",
+    "languages": {
+      "pt-BR": "Português",
+      "en": "English",
+      "es": "Español"
+    }
+  },
+  "cta": {
+    "viewProjects": "Ver Proyectos",
+    "contactMe": "Contáctame",
+    "downloadCV": "Descargar CV"
+  },
+  "accessibility": {
+    "skipToContent": "Saltar al contenido",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  }
+}

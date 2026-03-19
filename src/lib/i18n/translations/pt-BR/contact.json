@@ -1,0 +1,18 @@
+{
+  "title": "Contato",
+  "subtitle": "Vamos conversar sobre seu próximo projeto",
+  "form": {
+    "name": "Nome",
+    "email": "E-mail",
+    "message": "Mensagem",
+    "submit": "Enviar Mensagem",
+    "sending": "Enviando...",
+    "success": "Mensagem enviada com sucesso!",
+    "error": "Erro ao enviar mensagem. Tente novamente."
+  },
+  "info": {
+    "email": "E-mail",
+    "location": "Localização",
+    "availability": "Disponibilidade"
+  }
+}

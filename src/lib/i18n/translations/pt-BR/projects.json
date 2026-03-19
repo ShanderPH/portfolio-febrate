@@ -1,0 +1,16 @@
+{
+  "title": "Projetos",
+  "subtitle": "Conheça alguns dos meus trabalhos",
+  "filters": {
+    "all": "Todos",
+    "web": "Web",
+    "automation": "Automação",
+    "ai": "Inteligência Artificial"
+  },
+  "project": {
+    "viewProject": "Ver Projeto",
+    "viewCode": "Ver Código",
+    "technologies": "Tecnologias",
+    "results": "Resultados"
+  }
+}

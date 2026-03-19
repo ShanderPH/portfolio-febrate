@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Felipe Braat",
+    "roles": ["Desarrollador Full Stack", "Especialista en Automatización", "Entusiasta de IA"],
+    "tagline": "Transformando ideas en soluciones digitales elegantes y funcionales",
+    "cta": "Conoce mi trabajo",
+    "lines": {
+      "intro": "Hola, soy Felipe Braat.",
+      "notJust": "No solo un Ingeniero de Software.",
+      "problemSolver": "Sino un solucionador de problemas."
+    },
+    "scrollIndicator": "Desplázate para explorar",
+    "marqueeItems": ["Desarrollador Full Stack", "Ingeniero de Software", "Solucionador de Problemas", "Entusiasta de IA", "Automatización", "Innovación"]
+  },
+  "about": {
+    "label": "Ingeniero de Software",
+    "firstName": "Felipe",
+    "lastName": "Braat",
+    "description": "Ingeniero de Software con 3+ años de experiencia en TypeScript, Python y sistemas impulsados por IA. Historial comprobado de ingeniería de pipelines automatizados de calidad que redujeron el tiempo de primera respuesta en 48% y ahorraron 350+ horas de ingeniería anualmente.",
+    "cta": "Conectar en LinkedIn",
+    "highlights": {
+      "responseTime": "Reducción en FRT",
+      "hoursSaved": "Horas ahorradas/año",
+      "experience": "Años de experiencia",
+      "csat": "CSAT alcanzado"
+    }
+  },
+  "skills": {
+    "title": "Skills & Tecnologías",
+    "subtitle": "Las herramientas y tecnologías que uso para construir soluciones de impacto"
+  },
+  "services": {
+    "title": "Servicios",
+    "items": [
+      {
+        "title": "Desarrollo Web",
+        "description": "Creación de aplicaciones web modernas y responsivas utilizando las tecnologías más recientes."
+      },
+      {
+        "title": "Automatización",
+        "description": "Automatización de procesos para aumentar la eficiencia y reducir costos operativos."
+      },
+      {
+        "title": "Inteligencia Artificial",
+        "description": "Implementación de soluciones de IA para optimizar procesos y generar insights valiosos."
+      }
+    ]
+  },
+  "featuredProjects": {
+    "title": "Proyectos Destacados",
+    "viewAll": "Ver Todos los Proyectos"
+  }
+}

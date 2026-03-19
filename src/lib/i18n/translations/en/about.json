@@ -1,0 +1,49 @@
+{
+  "title": "About Me",
+  "subtitle": "Learn about my journey and skills",
+  "bio": {
+    "paragraphs": [
+      "I'm a full stack developer passionate about technology and innovation.",
+      "With experience in various technologies, I always strive to deliver high-quality solutions.",
+      "My focus is on creating digital experiences that make a difference."
+    ]
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "items": [
+      {
+        "company": "Example Company",
+        "role": "Full Stack Developer",
+        "period": "2022 - Present",
+        "description": "Web application development and process automation."
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "categories": [
+      {
+        "name": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+      },
+      {
+        "name": "Backend",
+        "items": ["Node.js", "Python", "Django", "PostgreSQL"]
+      },
+      {
+        "name": "Tools",
+        "items": ["Git", "Docker", "AWS", "Vercel"]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "items": [
+      {
+        "institution": "Example University",
+        "degree": "Bachelor's in Computer Science",
+        "period": "2018 - 2022"
+      }
+    ]
+  }
+}

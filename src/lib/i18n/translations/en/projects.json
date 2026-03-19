@@ -1,0 +1,16 @@
+{
+  "title": "Projects",
+  "subtitle": "Explore some of my work",
+  "filters": {
+    "all": "All",
+    "web": "Web",
+    "automation": "Automation",
+    "ai": "Artificial Intelligence"
+  },
+  "project": {
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "technologies": "Technologies",
+    "results": "Results"
+  }
+}

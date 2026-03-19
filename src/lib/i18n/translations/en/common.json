@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "madeWith": "Made with",
+    "tagline": "Building AI-driven systems that eliminate manual work at scale.",
+    "location": "Serra, ES, Brazil",
+    "navigation": "Navigation",
+    "connect": "Connect",
+    "builtWith": "Built with Next.js 16, HeroUI V3 & Tailwind CSS V4"
+  },
+  "locale": {
+    "switchTo": "Switch language to",
+    "languages": {
+      "pt-BR": "Português",
+      "en": "English",
+      "es": "Español"
+    }
+  },
+  "cta": {
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
+    "downloadCV": "Download CV"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  }
+}

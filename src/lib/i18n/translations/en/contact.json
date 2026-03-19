@@ -1,0 +1,18 @@
+{
+  "title": "Contact",
+  "subtitle": "Let's talk about your next project",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Error sending message. Please try again."
+  },
+  "info": {
+    "email": "Email",
+    "location": "Location",
+    "availability": "Availability"
+  }
+}
