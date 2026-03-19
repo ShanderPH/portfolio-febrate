@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion'
@@ -9,19 +9,21 @@ import { useT } from '@/lib/i18n/client'
 import { LocaleSwitcher } from '@/components/i18n/LocaleSwitcher'
 import { ThemeSwitcher } from '@/app/components/theme-switcher'
 import { type Locale } from '@/lib/i18n/settings'
+import { useSmoothScroll } from '@/components/animations/SmoothScrollProvider'
 
 type NavKey = 'nav.home' | 'nav.about' | 'nav.projects' | 'nav.contact'
 
 interface NavLink {
   key: NavKey
   href: string
+  sectionId: string
 }
 
 const navLinks: NavLink[] = [
-  { key: 'nav.home', href: '' },
-  { key: 'nav.about', href: 'about' },
-  { key: 'nav.projects', href: 'projects' },
-  { key: 'nav.contact', href: 'contact' },
+  { key: 'nav.home', sectionId: 'main-content', href: '' },
+  { key: 'nav.about', sectionId: 'about-section', href: 'about' },
+  { key: 'nav.projects', sectionId: 'projects-section', href: 'projects' },
+  { key: 'nav.contact', sectionId: 'footer', href: 'contact' },
 ]
 
 /**
@@ -38,6 +40,8 @@ export function Navbar() {
   
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('main-content')
+  const { scrollTo } = useSmoothScroll()
   
   const { scrollY } = useScroll()
   
@@ -53,18 +57,39 @@ export function Navbar() {
   
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 50)
+
+    const sections = navLinks.map(l => l.sectionId)
+    let current = sections[0]
+    for (const id of sections) {
+      const el = document.getElementById(id)
+      if (el) {
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= 120) current = id
+      }
+    }
+    setActiveSection(current)
   })
 
-  const isActiveLink = (href: string) => {
-    const fullPath = `/${locale}${href ? `/${href}` : ''}`
-    return pathname === fullPath || (href === '' && pathname === `/${locale}`)
+  const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/`
+
+  const isActiveLink = (link: NavLink) => {
+    if (isHomePage) return activeSection === link.sectionId
+    const fullPath = `/${locale}${link.href ? `/${link.href}` : ''}`
+    return pathname === fullPath || (link.href === '' && pathname === `/${locale}`)
   }
+
+  const handleNavClick = useCallback((e: React.MouseEvent, link: NavLink) => {
+    if (isHomePage) {
+      e.preventDefault()
+      scrollTo(`#${link.sectionId}`, { offset: -80, duration: 1.2 })
+    }
+  }, [isHomePage, scrollTo])
 
   return (
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-lg"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-lg"
       >
         {t('accessibility.skipToContent')}
       </a>
@@ -104,10 +129,11 @@ export function Navbar() {
             {navLinks.map((link) => (
               <li key={link.key}>
                 <Link
-                  href={`/${locale}${link.href ? `/${link.href}` : ''}`}
+                  href={isHomePage ? `#${link.sectionId}` : `/${locale}${link.href ? `/${link.href}` : ''}`}
+                  onClick={(e) => handleNavClick(e, link)}
                   className={`
                     px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
-                    ${isActiveLink(link.href)
+                    ${isActiveLink(link)
                       ? 'bg-accent text-accent-foreground'
                       : 'text-foreground hover:bg-default hover:text-foreground'
                     }
@@ -159,7 +185,9 @@ export function Navbar() {
           <MobileMenu
             navLinks={navLinks}
             locale={locale}
+            isHomePage={isHomePage}
             isActiveLink={isActiveLink}
+            handleNavClick={handleNavClick}
             onClose={() => setMobileMenuOpen(false)}
             t={t}
           />
@@ -172,12 +200,14 @@ export function Navbar() {
 interface MobileMenuProps {
   navLinks: NavLink[]
   locale: Locale
-  isActiveLink: (href: string) => boolean
+  isHomePage: boolean
+  isActiveLink: (link: NavLink) => boolean
+  handleNavClick: (e: React.MouseEvent, link: NavLink) => void
   onClose: () => void
   t: ReturnType<typeof useT>['t']
 }
 
-function MobileMenu({ navLinks, locale, isActiveLink, onClose, t }: MobileMenuProps) {
+function MobileMenu({ navLinks, locale, isHomePage, isActiveLink, handleNavClick, onClose, t }: MobileMenuProps) {
   return (
     <motion.div
       id="mobile-menu"
@@ -214,16 +244,15 @@ function MobileMenu({ navLinks, locale, isActiveLink, onClose, t }: MobileMenuPr
               transition={{ delay: index * 0.05 + 0.1 }}
             >
               <Link
-                href={`/${locale}${link.href ? `/${link.href}` : ''}`}
+                href={isHomePage ? `#${link.sectionId}` : `/${locale}${link.href ? `/${link.href}` : ''}`}
                 className={`
-                  block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200
-                  min-h-[44px] flex items-center
-                  ${isActiveLink(link.href)
+                  flex min-h-[44px] items-center rounded-xl px-4 py-3 text-base font-medium transition-all duration-200
+                  ${isActiveLink(link)
                     ? 'bg-accent text-accent-foreground'
                     : 'text-foreground hover:bg-default'
                   }
                 `}
-                onClick={onClose}
+                onClick={(e) => { handleNavClick(e, link); onClose() }}
               >
                 {t(link.key)}
               </Link>

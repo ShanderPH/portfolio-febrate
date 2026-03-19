@@ -8,7 +8,7 @@ import {
 } from 'react-i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { useParams } from 'next/navigation'
-import { getOptions, languages, type Locale } from './settings'
+import { getOptions, languages, fallbackLng, type Locale } from './settings'
 
 const runsOnServerSide = typeof window === 'undefined'
 
@@ -34,16 +34,14 @@ if (!i18next.isInitialized) {
 
 export function useT(ns: FlatNamespace | FlatNamespace[] = 'common') {
   const params = useParams()
-  const lng = (params?.locale as Locale) || 'pt-BR'
+  const lng = (params?.locale as Locale) || fallbackLng
   const [isReady, setIsReady] = useState(i18next.isInitialized)
 
   useEffect(() => {
     if (!i18next.isInitialized) {
-      const handleInitialized = () => setIsReady(true)
-      i18next.on('initialized', handleInitialized)
-      return () => {
-        i18next.off('initialized', handleInitialized)
-      }
+      const handler = () => setIsReady(true)
+      i18next.on('initialized', handler)
+      return () => { i18next.off('initialized', handler) }
     }
   }, [])
 

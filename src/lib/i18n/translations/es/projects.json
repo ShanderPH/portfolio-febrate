@@ -1,16 +1,54 @@
 {
-  "title": "Proyectos",
-  "subtitle": "Conoce algunos de mis trabajos",
-  "filters": {
-    "all": "Todos",
-    "web": "Web",
-    "automation": "Automatización",
-    "ai": "Inteligencia Artificial"
-  },
-  "project": {
-    "viewProject": "Ver Proyecto",
-    "viewCode": "Ver Código",
-    "technologies": "Tecnologías",
-    "results": "Resultados"
+  "sectionLabel": "Proyectos",
+  "title": "Lo que construyo",
+  "subtitle": "Una selección de proyectos que mejor representan mis habilidades técnicas y visión de producto.",
+  "projectCount_one": "{{count}} proyecto",
+  "projectCount_other": "{{count}} proyectos",
+  "viewProject": "Ver sitio",
+  "viewCode": "GitHub",
+  "internalProject": "Proyecto interno",
+  "technologies": "Tecnologías",
+  "results": "Resultados",
+  "overview": "Descripción general",
+  "stack": "Stack tecnológico",
+  "highlights": "Destacados",
+  "close": "Cerrar",
+  "items": {
+    "br-masters": {
+      "title": "BR Masters",
+      "description": "Plataforma web de predicciones de fútbol brasileño con rankings, sistema de XP/niveles, bolsa de premios y temas inspirados en FIFA/EA FC.",
+      "longDescription": "BR Masters es una plataforma de predicciones de fútbol brasileño. Los usuarios predicen marcadores del Brasileirão y otros campeonatos, compiten en rankings y siguen estadísticas en tiempo real. Ofrece dashboard interactivo con Bento Grid, sistema de XP y niveles (de Novato a Leyenda), bolsa de premios, integración con SofaScore vía RapidAPI y diseño mobile-first inspirado en FIFA/EA FC.",
+      "stackDescription": "Next.js 16 con App Router, HeroUI V3 para componentes, Tailwind CSS V4 para styling, Framer Motion para animaciones, Supabase para autenticación y base de datos, e integración con SofaScore vía RapidAPI."
+    },
+    "inchurch-knowledge": {
+      "title": "Centro de Ayuda inChurch",
+      "description": "Base de conocimiento oficial de inChurch con chat IA integrado vía N8N, consulta de tickets HubSpot y búsqueda inteligente de artículos.",
+      "longDescription": "Base de conocimiento oficial de inChurch con chat IA integrado. Incluye integración con N8N webhook para respuestas automáticas, base de artículos organizados y buscables, API de tickets para consulta y gestión vía HubSpot, búsqueda inteligente avanzada e interfaz responsiva optimizada para escritorio y móvil.",
+      "stackDescription": "Next.js 15 con React 18, HeroUI para componentes de UI, TailwindCSS para styling, Framer Motion para animaciones, integración con HubSpot API para tickets y N8N Webhooks para chat IA."
+    },
+    "helper-saas": {
+      "title": "Helper SaaS",
+      "description": "Plataforma SaaS multi-módulo para gestión de negocios con arquitectura multi-tenant, módulos de academia de danza y sitios personalizables.",
+      "longDescription": "Plataforma SaaS multi-módulo para gestión de negocios organizada en monorepo con Turborepo. Implementa arquitectura multi-tenant donde cada tenant representa un negocio, con roles (owner, admin, manager, staff). Módulos incluyen autenticación JWT, gestión de usuarios, academia de danza (alumnos, clases, matrículas y pagos) y más en desarrollo.",
+      "stackDescription": "Frontend con Next.js 14 y HeroUI, backend con Python 3.12+, Django 6.0 y Django Ninja para APIs type-safe, PostgreSQL para base de datos, autenticación JWT y Turborepo para gestión del monorepo."
+    },
+    "helper-cx": {
+      "title": "Helper CX",
+      "description": "Plataforma CRM para Customer Experience con integraciones HubSpot, Jira y Supabase, dashboards en tiempo real y backend FastAPI.",
+      "longDescription": "Aplicación web completa que ayuda al equipo de Customer Experience a gestionar soporte y customer success. Ofrece herramientas para medir, automatizar y mejorar el rendimiento de atención al cliente con integraciones HubSpot (CRM), Jira/Atlassian (gestión de issues) y Supabase (backend realtime). Incluye features de autenticación, gestión de cola y sistema de tickets.",
+      "stackDescription": "Next.js 16 con React 19, HeroUI 2.8.5, Tailwind CSS v4, Framer Motion 12. Backend con Python 3.12+ y FastAPI asíncrono, Pydantic 2.0 para validación, httpx para HTTP client y Supabase para PostgreSQL."
+    },
+    "natal-teixeira": {
+      "title": "Natal Teixeira",
+      "description": "Proyecto web estacional con temática navideña, animaciones interactivas e integración con Supabase para gestión dinámica de contenido.",
+      "longDescription": "Proyecto web estacional con temática navideña, presentando animaciones interactivas, diseño temático inmersivo y backend con Supabase para gestión dinámica de contenido. Creado como demostración de habilidades en diseño y desarrollo frontend.",
+      "stackDescription": "Next.js para renderizado, Supabase para backend, animaciones CSS/Framer Motion y diseño responsivo optimizado para dispositivos móviles."
+    },
+    "heimdall-agent": {
+      "title": "Heimdall Agent",
+      "description": "Agente de IA interno para triaje y respuesta automática de tickets de soporte, reduciendo tiempo de primera respuesta en 48% y ahorrando 350+ horas anuales.",
+      "longDescription": "Agente de inteligencia artificial desarrollado internamente para automatizar el triaje y respuesta de tickets de soporte. Utiliza NLP para clasificación de intención, generación de respuestas contextuales y enrutamiento inteligente a especialistas. Resultó en una reducción de 48% en el tiempo de primera respuesta y ahorro de 350+ horas de trabajo manual por año.",
+      "stackDescription": "Python con procesamiento de lenguaje natural, integración con APIs de LLM, pipeline de automatización con n8n y monitoreo con métricas en tiempo real."
+    }
   }
 }
