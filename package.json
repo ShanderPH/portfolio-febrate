@@ -20,7 +20,7 @@
     "@gsap/react": "^2.1.2",
     "@heroui/react": "3.2.7",
     "@heroui/styles": "3.2.7",
-    "@paper-design/shaders-react": "^0.0.71",
+    "@paper-design/shaders-react": "^0.0.82",
     "accept-language": "^3.0.20",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
