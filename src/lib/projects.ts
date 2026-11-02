@@ -12,6 +12,7 @@ interface GitHubRepo {
   topics: string[];
   updated_at: string;
   html_url: string;
+  private: boolean;
 }
 
 async function fetchGitHubRepo(repo: string): Promise<GitHubRepo | null> {
@@ -58,10 +59,10 @@ export async function getProjects(): Promise<ProjectData[]> {
 
       return {
         ...config,
-        stars: ghData?.stargazers_count ?? 0,
+        stars: ghData && !ghData.private ? ghData.stargazers_count : 0,
         language: ghData?.language ?? null,
         topics: ghData?.topics ?? config.tags,
-        githubUrl: ghData?.html_url ?? null,
+        githubUrl: ghData && !ghData.private ? ghData.html_url : null,
         liveUrl,
         screenshotUrl,
         updatedAt: ghData?.updated_at ?? null,

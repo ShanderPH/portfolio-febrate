@@ -1,75 +1,52 @@
-import type { Metadata } from 'next'
-import { languages, type Locale } from '@/lib/i18n/settings'
-import { lexendDeca } from '@/lib/fonts'
-import { serverSideTranslation } from '@/lib/i18n'
-import { I18nProvider } from '@/components/i18n/I18nProvider'
-import { Navbar } from '@/components/layout'
-import { SmoothScrollProvider } from '@/components/animations'
-import '../globals.css'
+import type { Metadata } from 'next';
+import { languages, fallbackLng, type Locale } from '@/lib/i18n/settings';
+import { portfolioCopy } from '@/components/portfolio/portfolio-copy';
+import '../globals.css';
 
+const siteUrl = new URL('https://www.febrate.com');
 
-export async function generateStaticParams() {
-  return languages.map((locale) => ({ locale }))
+export function generateStaticParams() {
+  return languages.map(locale => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}): Promise<Metadata> {
-  const { locale: localeParam } = await params
-  const locale = localeParam as Locale
-  const { t } = await serverSideTranslation(locale, ['common', 'home'])
-
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = languages.includes(rawLocale as Locale) ? rawLocale as Locale : fallbackLng;
+  const copy = portfolioCopy[locale];
+  const title = `Felipe Braat | Software Engineer — Febrate`;
   return {
-    title: `Febrate Portfolio - ${t('nav.home')}`,
-    description: t('hero.tagline', { ns: 'home' }),
-  }
+    metadataBase: siteUrl,
+    title,
+    description: copy.intro,
+    applicationName: 'Febrate Portfolio',
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { 'pt-BR': '/pt-BR', en: '/en', es: '/es', 'x-default': '/pt-BR' },
+    },
+    openGraph: {
+      type: 'website',
+      title,
+      description: copy.intro,
+      locale: locale === 'pt-BR' ? 'pt_BR' : locale === 'es' ? 'es_ES' : 'en_US',
+      siteName: 'Febrate',
+      url: `/${locale}`,
+    },
+    twitter: { card: 'summary', title, description: copy.intro },
+    robots: { index: true, follow: true },
+  };
 }
 
 export default async function LocaleLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
-}>) {
-  const { locale: localeParam } = await params
-  const locale = localeParam as Locale
-  const { resources } = await serverSideTranslation(locale, ['common', 'home'])
-
+}: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {
+  const { locale: rawLocale } = await params;
+  const locale = languages.includes(rawLocale as Locale) ? rawLocale as Locale : fallbackLng;
   return (
-    <html lang={locale} dir="ltr" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const theme = localStorage.getItem('theme') || 'system';
-                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                  const resolvedTheme = theme === 'system' ? systemTheme : theme;
-                  document.documentElement.classList.add(resolvedTheme);
-                  document.documentElement.setAttribute('data-theme', resolvedTheme);
-                  document.documentElement.style.colorScheme = resolvedTheme;
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-      </head>
-      <body
-        className={`${lexendDeca.className} antialiased min-h-screen text-foreground`}
-      >
-        <I18nProvider locale={locale} namespaces={['common', 'home']} resources={resources}>
-          <SmoothScrollProvider>
-            <Navbar />
-            <main id="main-content">
-              {children}
-            </main>
-          </SmoothScrollProvider>
-        </I18nProvider>
+    <html lang={locale} dir="ltr">
+      <body className="antialiased">
+        <main id="main-content">{children}</main>
       </body>
     </html>
-  )
+  );
 }
