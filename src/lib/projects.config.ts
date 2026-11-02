@@ -19,11 +19,21 @@ export interface ProjectConfig {
 
 export const projectsConfig: ProjectConfig[] = [
   {
+    id: "jpm",
+    repo: "ShanderPH/jpm",
+    size: "featured",
+    status: "live",
+    liveUrl: "https://www.jpmlda.com/",
+    screenshotUrl: "https://www.jpmlda.com/",
+    tags: ["Next.js", "TypeScript", "Responsive Design", "i18n", "Resend"],
+    featured: true,
+  },
+  {
     id: "br-masters",
     repo: "ShanderPH/br-masters",
     size: "featured",
     status: "live",
-    liveUrl: "https://brmasters.febrate.com/",
+    liveUrl: "https://brmasters.fun/",
     tags: ["Next.js 16", "TypeScript", "HeroUI", "Tailwind CSS v4", "Supabase", "Framer Motion"],
     accentColor: "var(--earth-accent)",
     featured: true,
