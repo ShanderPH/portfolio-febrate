@@ -93,9 +93,9 @@ function ProjectCard({ project, index, labels, lang }: { project: ProjectData; i
       <ProjectPreview project={project} title={title} />
       <div className="portfolio-project-body">
         <div className="portfolio-project-meta">
-          <span>{String(index + 1).padStart(2, '0')} / {projectCategories[project.id] || 'product'}</span>
+          <span>{String(index + 1).padStart(2, '0')} / {c.work.filters[categories.indexOf(project.category)]}</span>
           <span className={'portfolio-project-status' + (internal ? ' portfolio-project-status--internal' : '')}>
-            <span aria-hidden="true" className="portfolio-dot" /> {internal ? c.work.internal : 'Live'}
+            <span aria-hidden="true" className="portfolio-dot" /> {internal ? c.work.internal : c.work.liveStatus}
           </span>
         </div>
         <h3>{title}</h3>
@@ -178,11 +178,11 @@ export function PortfolioHome({ locale, projects, translations }: PortfolioHomeP
     { label: c.nav.about, href: '#about-section' },
     { label: c.nav.contact, href: '#contact-section' },
   ];
-  const visibleProjects = projects.filter(p => category === 'all' || (projectCategories[p.id] || 'product') === category);
+  const visibleProjects = projects.filter(p => category === 'all' || p.category === category);
 
   return (
     <div className="portfolio-site" data-theme={theme}>
-      <a href="#portfolio-main" className="portfolio-skip">Skip to content</a>
+      <a href="#portfolio-main" className="portfolio-skip">{c.skip}</a>
       <header className="portfolio-header">
         <div className="portfolio-header-inner">
           <a className="portfolio-brand" href="#portfolio-main" aria-label="Felipe Braat — home">
@@ -252,7 +252,7 @@ export function PortfolioHome({ locale, projects, translations }: PortfolioHomeP
                 <a className="portfolio-button portfolio-button-primary" href="#projects-section">{c.explore}<ArrowIcon /></a>
                 <a className="portfolio-button portfolio-button-ghost" href="#contact-section">{c.connect}<ArrowIcon external /></a>
               </Reveal>
-              <div className="portfolio-hero-bottom"><span className="portfolio-small-cross" aria-hidden="true">+</span>{c.scroll}<span className="portfolio-hero-index">EST. 2026 / PORTFOLIO</span></div>
+              <div className="portfolio-hero-bottom"><span className="portfolio-small-cross" aria-hidden="true">+</span>{c.scroll}<span className="portfolio-hero-index">ENGINEERING / DIGITAL PRODUCTS</span></div>
             </div>
             <Reveal delay={0.16} className="portfolio-hero-visual">
               <div className="portfolio-diagram">
