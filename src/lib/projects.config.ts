@@ -1,11 +1,13 @@
 export type ProjectSize = "featured" | "wide" | "normal";
 export type ProjectStatus = "live" | "internal" | "wip" | "archived";
+export type ProjectCategory = "product" | "platform" | "automation";
 
 export interface ProjectConfig {
   id: string;
   repo?: string;
   size: ProjectSize;
   status: ProjectStatus;
+  category: ProjectCategory;
   liveUrl?: string;
   screenshotUrl?: string;
   tags: string[];
@@ -20,6 +22,7 @@ export interface ProjectConfig {
 export const projectsConfig: ProjectConfig[] = [
   {
     id: "jpm",
+    category: "platform",
     repo: "ShanderPH/jpm",
     size: "featured",
     status: "live",
@@ -30,6 +33,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "br-masters",
+    category: "product",
     repo: "ShanderPH/br-masters",
     size: "featured",
     status: "live",
@@ -40,6 +44,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "inchurch-knowledge",
+    category: "platform",
     repo: "ShanderPH/inchurch-knowledge",
     size: "featured",
     status: "live",
@@ -51,6 +56,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "helper-saas",
+    category: "product",
     repo: "ShanderPH/helper-saas",
     size: "featured",
     status: "live",
@@ -62,6 +68,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "helper-cx",
+    category: "platform",
     repo: "ShanderPH/helper-cx",
     size: "normal",
     status: "live",
@@ -71,6 +78,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "natal-teixeira",
+    category: "product",
     repo: "ShanderPH/natal-teixeira",
     size: "normal",
     status: "live",
@@ -80,6 +88,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "heimdall-agent",
+    category: "automation",
     size: "normal",
     status: "internal",
     tags: ["Python", "NLP", "n8n", "LLM API", "Automation"],
