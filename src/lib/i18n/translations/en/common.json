@@ -27,6 +27,7 @@
     "contactMe": "Contact Me",
     "downloadCV": "Download CV"
   },
+  "theme": { "toggle": "Toggle theme" },
   "accessibility": {
     "skipToContent": "Skip to content",
     "openMenu": "Open menu",

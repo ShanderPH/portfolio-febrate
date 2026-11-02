@@ -1,0 +1,65 @@
+/* Approved Matéria tokens; Archive/Atlas remain isolated review alternatives. */
+.authorial {
+  color-scheme: light;
+  --a-canvas: #eeeae2;
+  --a-text: #302b25;
+  --a-muted: #655d53;
+  --a-line: #c5bcaf;
+  --a-accent: #834726;
+  --a-surface: #e4ddd1;
+  --a-fast: 160ms;
+  --a-navigation: 280ms;
+  --a-reveal: 500ms;
+  --a-ease: cubic-bezier(.22, 1, .36, 1);
+  --a-gutter: clamp(22px, 5vw, 88px);
+  --a-section: clamp(72px, 10vw, 160px);
+  --background: var(--a-canvas);
+  --foreground: var(--a-text);
+  --surface: var(--a-surface);
+  --muted: var(--a-muted);
+  --accent: var(--a-accent);
+  --accent-foreground: var(--a-canvas);
+  --color-background: var(--a-canvas);
+  --color-foreground: var(--a-text);
+  --color-surface: var(--a-surface);
+  --color-muted: var(--a-muted);
+  --color-accent: var(--a-accent);
+  --color-accent-foreground: var(--a-canvas);
+  --color-default: var(--a-surface);
+  --color-separator: var(--a-line);
+}
+.authorial[data-theme="dark"] {
+  --a-canvas: #201d19;
+  --a-text: #eeeae2;
+  --a-muted: #c1b6a7;
+  --a-line: #50483e;
+  --a-accent: #e8b58d;
+  --a-surface: #302a23;
+  color-scheme: dark;
+}
+.authorial--archive {
+  --a-canvas: #fff;
+  --a-text: #161616;
+  --a-muted: #626262;
+  --a-line: #d3d3d3;
+  --a-accent: #161616;
+  --a-surface: #f1f1f1;
+}
+.authorial--archive[data-theme="dark"], .authorial--atlas[data-theme="dark"] {
+  --a-canvas: #12130f;
+  --a-text: #e4dfda;
+  --a-muted: #b8b6ad;
+  --a-line: #3c3c38;
+  --a-accent: #e4dfda;
+  --a-surface: #1d1e19;
+  color-scheme: dark;
+}
+.authorial--atlas[data-theme="light"] {
+  --a-canvas: #e4dfda;
+  --a-text: #12130f;
+  --a-muted: #57574f;
+  --a-line: #b9b7ad;
+  --a-accent: #12130f;
+  --a-surface: #d8d4cc;
+  color-scheme: light;
+}

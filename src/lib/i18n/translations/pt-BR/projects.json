@@ -1,4 +1,5 @@
 {
+  "filters": { "all": "Todos", "product": "Produtos", "platform": "Plataformas", "automation": "Automação" },
   "sectionLabel": "Projetos",
   "title": "O que eu construo",
   "subtitle": "Uma seleção dos projetos que melhor representam minhas habilidades técnicas e visão de produto.",

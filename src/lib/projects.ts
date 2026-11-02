@@ -27,6 +27,7 @@ async function fetchGitHubRepo(repo: string): Promise<GitHubRepo | null> {
 
     const res = await fetch(`${GH_API}/repos/${repo}`, {
       headers,
+      signal: AbortSignal.timeout(4000),
       next: { revalidate: 3600 },
     });
 
@@ -50,7 +51,9 @@ export interface ProjectData extends Omit<ProjectConfig, "liveUrl" | "screenshot
 export async function getProjects(): Promise<ProjectData[]> {
   const results = await Promise.all(
     projectsConfig.map(async (config) => {
-      const ghData = config.repo ? await fetchGitHubRepo(config.repo) : null;
+      const repo = config.repo ? await fetchGitHubRepo(config.repo) : null;
+      // A configured token must never make private repository metadata public.
+      const ghData = repo?.private === false ? repo : null;
       const liveUrl = config.liveUrl ?? ghData?.homepage ?? null;
       const screenshotTarget = config.screenshotUrl ?? liveUrl;
       const screenshotUrl = screenshotTarget

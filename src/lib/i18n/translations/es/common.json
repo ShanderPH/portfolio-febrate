@@ -27,6 +27,7 @@
     "contactMe": "Contáctame",
     "downloadCV": "Descargar CV"
   },
+  "theme": { "toggle": "Cambiar tema" },
   "accessibility": {
     "skipToContent": "Saltar al contenido",
     "openMenu": "Abrir menú",

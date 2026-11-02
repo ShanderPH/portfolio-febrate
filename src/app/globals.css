@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@heroui/styles";
 
 /*
  * Febrate Portfolio - Custom Earth-Tone Theme
@@ -267,6 +266,8 @@ h1, h2, h3, h4, h5, h6 {
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-default: var(--default);
+  --color-separator: var(--separator);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);

@@ -1,21 +1,25 @@
-import { languages, fallbackLng, type Locale } from '@/lib/i18n/settings';
+import { notFound } from 'next/navigation';
+import { isLocale } from '@/lib/i18n/navigation';
 import { getProjects } from '@/lib/projects';
-import { PortfolioHome } from '@/components/portfolio/PortfolioHome';
-import type { ProjectTranslations } from '@/components/projects/types';
-import ptBR from '@/lib/i18n/translations/pt-BR/projects.json';
-import en from '@/lib/i18n/translations/en/projects.json';
-import es from '@/lib/i18n/translations/es/projects.json';
-import '@/components/portfolio/portfolio.css';
-
-const translations: Record<Locale, ProjectTranslations> = {
-  'pt-BR': ptBR as ProjectTranslations,
-  en: en as ProjectTranslations,
-  es: es as ProjectTranslations,
-};
+import { dictionaries } from '@/lib/portfolio/dictionaries';
+import { AuthorialShell } from '@/components/portfolio/AuthorialShell';
+import { AuthorialNavbar } from '@/components/portfolio/AuthorialNavbar';
+import { HeroNarrative } from '@/components/hero/HeroNarrative';
+import { HeroMarquee } from '@/components/hero/HeroMarquee';
+import { AuthorialContent } from '@/components/portfolio/AuthorialContent';
+import '@/styles/authorial.css';
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: rawLocale } = await params;
-  const locale = languages.includes(rawLocale as Locale) ? rawLocale as Locale : fallbackLng;
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const dictionary = dictionaries[locale];
   const projects = await getProjects();
-  return <PortfolioHome locale={locale} projects={projects} translations={translations[locale]} />;
+  const { nav, accessibility } = dictionary.common;
+  return <AuthorialShell concept="matter" themeLabel={dictionary.common.theme.toggle}>
+    <AuthorialNavbar locale={locale} path={`/${locale}`}
+      labels={{ ...nav, open: accessibility.openMenu, skip: accessibility.skipToContent }} />
+    <HeroNarrative hero={dictionary.home.hero} />
+    <HeroMarquee items={dictionary.home.hero.marqueeItems} pauseLabel={dictionary.home.hero.pause} resumeLabel={dictionary.home.hero.resume} />
+    <AuthorialContent dictionary={dictionary} projects={projects} />
+  </AuthorialShell>;
 }
