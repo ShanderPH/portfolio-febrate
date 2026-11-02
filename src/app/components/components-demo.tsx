@@ -45,22 +45,34 @@ export function ComponentsDemo() {
           <Card.Content className="space-y-4">
             <div className="flex items-center gap-4">
               <Switch defaultSelected>
+                <Switch.Content>
+                <Switch.Control><Switch.Thumb /></Switch.Control>
                 <Label>Notifications</Label>
+                </Switch.Content>
               </Switch>
             </div>
             <div className="flex items-center gap-4">
               <Switch>
+                <Switch.Content>
+                <Switch.Control><Switch.Thumb /></Switch.Control>
                 <Label>Dark Mode</Label>
+                </Switch.Content>
               </Switch>
             </div>
             <div className="flex items-center gap-4">
               <Switch defaultSelected size="sm">
+                <Switch.Content>
+                <Switch.Control><Switch.Thumb /></Switch.Control>
                 <Label>Small Switch</Label>
+                </Switch.Content>
               </Switch>
             </div>
             <div className="flex items-center gap-4">
               <Switch isDisabled>
+                <Switch.Content>
+                <Switch.Control><Switch.Thumb /></Switch.Control>
                 <Label>Disabled</Label>
+                </Switch.Content>
               </Switch>
             </div>
           </Card.Content>
