@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import acceptLanguage from 'accept-language'
 import { fallbackLng, languages, cookieName, headerName } from '@/lib/i18n/settings'
+import { isLocale } from '@/lib/i18n/navigation'
 
 acceptLanguage.languages([...languages])
 
@@ -14,7 +15,8 @@ function getLocale(request: NextRequest): string {
   let lng: string | null = null
 
   if (request.cookies.has(cookieName)) {
-    lng = request.cookies.get(cookieName)?.value ?? null
+    const saved = request.cookies.get(cookieName)?.value
+    lng = saved && isLocale(saved) ? saved : null
   }
 
   if (!lng) {

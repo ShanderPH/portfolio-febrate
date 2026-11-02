@@ -21,6 +21,7 @@ function subscribeToReducedMotion(callback: () => void) {
 }
 
 type MarqueeDirection = 'left' | 'right'
+const subscribeMounted = () => () => {}
 
 interface MarqueeProps {
   children: ReactNode
@@ -30,6 +31,8 @@ interface MarqueeProps {
   className?: string
   style?: CSSProperties
   gap?: number
+  pauseLabel?: string
+  resumeLabel?: string
 }
 
 /**
@@ -72,10 +75,14 @@ export function Marquee({
   className,
   style,
   gap = 48,
+  pauseLabel = 'Pause animation',
+  resumeLabel = 'Resume animation',
 }: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const [duration, setDuration] = useState(20)
+  const [paused, setPaused] = useState(false)
+  const mounted = useSyncExternalStore(subscribeMounted, () => true, () => false)
   
   const prefersReducedMotion = useSyncExternalStore(
     subscribeToReducedMotion,
@@ -84,16 +91,16 @@ export function Marquee({
   )
 
   useEffect(() => {
-    if (contentRef.current) {
-      const contentWidth = contentRef.current.scrollWidth
-      const calculatedDuration = contentWidth / speed
-      setDuration(calculatedDuration)
-    }
-  }, [speed, children])
+    const observer = new ResizeObserver(() => {
+      if (contentRef.current && contentRef.current.scrollWidth > 0) setDuration(contentRef.current.scrollWidth / speed)
+    })
+    if (contentRef.current) observer.observe(contentRef.current)
+    return () => observer.disconnect()
+  }, [speed, children, mounted, prefersReducedMotion])
 
   const animationDirection = direction === 'left' ? 'normal' : 'reverse'
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || !mounted) {
     return (
       <div
         ref={containerRef}
@@ -106,6 +113,7 @@ export function Marquee({
         <div
           style={{
             display: 'flex',
+            flexWrap: 'wrap',
             gap: `${gap}px`,
           }}
         >
@@ -124,6 +132,9 @@ export function Marquee({
         ...style,
       }}
     >
+      <button type="button" className="marquee-control" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? resumeLabel : pauseLabel}>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">{paused ? <path d="m9 5 10 7-10 7Z"/> : <path d="M8 5v14M16 5v14"/>}</svg>
+      </button>
       <div
         className={pauseOnHover ? 'marquee-pause-on-hover' : undefined}
         style={{
@@ -134,6 +145,7 @@ export function Marquee({
           animationTimingFunction: 'linear',
           animationIterationCount: 'infinite',
           animationDirection,
+          animationPlayState: paused ? 'paused' : undefined,
         }}
       >
         <div

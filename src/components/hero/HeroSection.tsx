@@ -166,7 +166,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 z-20">
-          <HeroMarquee />
+          <HeroMarquee items={t('hero.marqueeItems', { returnObjects: true }) as string[]} pauseLabel={t('hero.pause')} resumeLabel={t('hero.resume')} />
         </div>
       </div>
     </section>

@@ -22,6 +22,15 @@ This document outlines the internationalization (i18n) patterns and rules for th
 
 ## Server Components
 
+The authorial homepage loads the existing JSON namespaces through
+`@/lib/portfolio/dictionaries` on the server and passes translated strings to its
+interactive islands. Prefer this pattern for static portfolio content: it keeps
+the dictionaries as the single source of truth without hydrating a translation
+provider around the whole page. Validate the locale with `isLocale` first.
+
+The `serverSideTranslation` API below remains available for components that need
+i18next interpolation or namespace loading.
+
 1. Import `serverSideTranslation` from `@/lib/i18n`
 2. Get locale from params: `const { locale } = await params`
 3. Load translations: `const { t } = await serverSideTranslation(locale, ['namespace'])`
@@ -57,6 +66,9 @@ t('home:hero.greeting') // from 'home' namespace
 ---
 
 ## Client Components
+
+Interactive components receiving already translated strings as props do not need
+`I18nProvider` or `useT`. The rules below apply when a component calls `useT`.
 
 1. Must be wrapped in `I18nProvider` (usually done in layout)
 2. Import `useT` from `@/lib/i18n/client`
@@ -185,8 +197,11 @@ The `[locale]/layout.tsx` handles:
 
 - Setting `lang` attribute on `<html>` tag
 - Setting `dir` attribute (ltr for all supported languages)
-- Wrapping children with `I18nProvider`
-- Loading initial namespaces
+- Loading local fonts and validating the route locale
+
+The authorial homepage passes translated content from Server Components. Wrap
+only legacy islands calling `useT` with `I18nProvider`; the component review page
+at `/[locale]/concepts/components` demonstrates that integration.
 
 ### Adding Namespaces to Layout
 
@@ -220,7 +235,7 @@ Features:
 
 ## Middleware Behavior
 
-The middleware (`src/middleware.ts`) handles:
+The locale proxy (`src/proxy.ts`) handles:
 
 1. **URL Detection**: Checks if URL has locale prefix
 2. **Cookie Detection**: Reads `NEXT_LOCALE` cookie

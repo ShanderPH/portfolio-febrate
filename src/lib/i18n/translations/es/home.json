@@ -1,5 +1,7 @@
 {
   "hero": {
+    "pause": "Pausar animación",
+    "resume": "Reanudar animación",
     "greeting": "Hola, soy",
     "name": "Felipe Braat",
     "roles": ["Desarrollador Full Stack", "Especialista en Automatización", "Entusiasta de IA"],
@@ -27,6 +29,7 @@
     }
   },
   "skills": {
+    "explore": "Explorar tecnologías",
     "title": "Skills & Tecnologías",
     "subtitle": "Las herramientas y tecnologías que uso para construir soluciones de impacto"
   },

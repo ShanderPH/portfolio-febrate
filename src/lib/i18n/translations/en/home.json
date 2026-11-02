@@ -1,5 +1,7 @@
 {
   "hero": {
+    "pause": "Pause animation",
+    "resume": "Resume animation",
     "greeting": "Hello, I'm",
     "name": "Felipe Braat",
     "roles": ["Full Stack Developer", "Automation Specialist", "AI Enthusiast"],
@@ -27,6 +29,7 @@
     }
   },
   "skills": {
+    "explore": "Explore technologies",
     "title": "Skills & Technologies",
     "subtitle": "The tools and technologies I use to build impactful solutions"
   },

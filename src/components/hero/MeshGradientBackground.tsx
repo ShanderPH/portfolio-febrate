@@ -1,71 +1,38 @@
-'use client'
+'use client';
 
-import { useEffect, useState, useSyncExternalStore } from 'react'
-import { MeshGradient } from '@paper-design/shaders-react'
-import { useReducedMotion } from 'framer-motion'
+import { Component, lazy, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 
-const emptySubscribe = () => () => {}
+const MeshGradient = lazy(() => import('@paper-design/shaders-react').then(module => ({ default: module.MeshGradient })));
+const colors = ['#8B7355', '#A08060', '#C4A77D', '#D4C4A8', '#6B5B45', '#9C8B6E'];
 
-interface MeshGradientBackgroundProps {
-  className?: string
+class ShaderBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() { return this.state.failed ? null : this.props.children; }
 }
 
-export function MeshGradientBackground({ className = '' }: MeshGradientBackgroundProps) {
-  const mounted = useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  )
-  const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 })
-  const prefersReducedMotion = useReducedMotion()
-
+/** Decorative enhancement: static first, no GPU on mobile/reduced motion. */
+export function MeshGradientBackground({ className = '' }: { className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [enabled, setEnabled] = useState(false);
   useEffect(() => {
-    if (!mounted) return
-    
-    const updateDimensions = () => {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
-
-    updateDimensions()
-    window.addEventListener('resize', updateDimensions)
-    return () => window.removeEventListener('resize', updateDimensions)
-  }, [mounted])
-
-  const earthToneColors = [
-    '#8B7355',
-    '#A08060',
-    '#C4A77D',
-    '#D4C4A8',
-    '#6B5B45',
-    '#9C8B6E',
-  ]
-
-  const speed = prefersReducedMotion ? 0 : 0.35
-
-  return (
-    <div className={`absolute inset-0 ${className}`}>
-      <div className="absolute inset-0 bg-linear-to-br from-(--stone-200) via-(--stone-100) to-(--stone-50) dark:from-(--stone-900) dark:via-(--stone-950) dark:to-(--stone-900)" />
-      
-      {mounted && (
-        <div className="absolute inset-0">
-          <MeshGradient
-            width={dimensions.width}
-            height={dimensions.height}
-            colors={earthToneColors}
-            distortion={0.6}
-            swirl={0.5}
-            grainMixer={0}
-            grainOverlay={0}
-            speed={speed}
-            offsetX={0.1}
-          />
-        </div>
-      )}
-      
-      <div className="absolute inset-0 pointer-events-none bg-white/30 dark:bg-black/40" />
-    </div>
-  )
+    const media = matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference) and (pointer: fine)');
+    let visible = false;
+    const update = () => setEnabled(media.matches && visible && document.visibilityState === 'visible');
+    const observer = new IntersectionObserver(entries => {
+      visible = entries.some(entry => entry.isIntersecting);
+      update();
+    });
+    if (ref.current) observer.observe(ref.current);
+    media.addEventListener('change', update);
+    document.addEventListener('visibilitychange', update);
+    return () => { observer.disconnect(); media.removeEventListener('change', update); document.removeEventListener('visibilitychange', update); };
+  }, []);
+  return <div ref={ref} aria-hidden="true" className={`absolute inset-0 ${className}`}
+    style={{ background: 'radial-gradient(ellipse at 25% 25%, #d4c4a8, #a08060 55%, #6b5b45)', pointerEvents: 'none' }}>
+    {enabled && <ShaderBoundary><Suspense fallback={null}>
+      <MeshGradient style={{ width: '100%', height: '100%' }} maxPixelCount={650000} colors={colors}
+        distortion={0.6} swirl={0.5} grainMixer={0} grainOverlay={0} speed={0.2} offsetX={0.1} />
+    </Suspense></ShaderBoundary>}
+  </div>;
 }

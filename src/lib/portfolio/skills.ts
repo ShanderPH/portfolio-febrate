@@ -1,0 +1,23 @@
+/** Technology roster preserved from the original interactive cloud. */
+export const portfolioSkills = [
+  { slug: 'typescript', name: 'TypeScript' },
+  { slug: 'python', name: 'Python' },
+  { slug: 'javascript', name: 'JavaScript' },
+  { slug: 'react', name: 'React' },
+  { slug: 'nextdotjs', name: 'Next.js' },
+  { slug: 'nodedotjs', name: 'Node.js' },
+  { slug: 'tailwindcss', name: 'Tailwind CSS' },
+  { slug: 'postgresql', name: 'PostgreSQL' },
+  { slug: 'supabase', name: 'Supabase' },
+  { slug: 'fastapi', name: 'FastAPI' },
+  { slug: 'flask', name: 'Flask' },
+  { slug: 'openai', name: 'OpenAI' },
+  { slug: 'docker', name: 'Docker' },
+  { slug: 'git', name: 'Git' },
+  { slug: 'github', name: 'GitHub' },
+  { slug: 'jira', name: 'Jira' },
+  { slug: 'postman', name: 'Postman' },
+  { slug: 'n8n', name: 'n8n' },
+  { slug: 'hubspot', name: 'HubSpot' },
+  { slug: 'googlesheets', name: 'Google Sheets' },
+];

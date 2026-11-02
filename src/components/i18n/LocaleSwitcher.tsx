@@ -1,10 +1,11 @@
 'use client'
 
-import { useParams, usePathname, useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { Button, Dropdown, Label } from '@heroui/react'
 import { languages, cookieName, type Locale } from '@/lib/i18n/settings'
 import { useT } from '@/lib/i18n/client'
 import Image from 'next/image'
+import { isLocale, localizedHref } from '@/lib/i18n/navigation'
 
 const localeConfig: Record<Locale, { flag: string; shortCode: string; name: string }> = {
   'pt-BR': { flag: '/flags/br.svg', shortCode: 'PT', name: 'Português' },
@@ -14,21 +15,16 @@ const localeConfig: Record<Locale, { flag: string; shortCode: string; name: stri
 
 export function LocaleSwitcher() {
   const router = useRouter()
-  const pathname = usePathname()
   const params = useParams()
   const currentLocale = (params?.locale as Locale) || 'pt-BR'
   const { t } = useT('common')
 
   const handleLocaleChange = (newLocale: Locale) => {
-    if (newLocale === currentLocale) return
+    if (!isLocale(newLocale) || newLocale === currentLocale) return
 
     document.cookie = `${cookieName}=${newLocale};path=/;max-age=${60 * 60 * 24 * 365};samesite=lax`
 
-    const segments = pathname.split('/')
-    segments[1] = newLocale
-    const newPath = segments.join('/')
-
-    router.push(newPath)
+    router.push(localizedHref(window.location.href, newLocale))
     router.refresh()
   }
 

@@ -1,17 +1,10 @@
-'use client'
+import { Marquee } from '@/components/animations/Marquee'
 
-import { useT } from '@/lib/i18n/client'
-import { Marquee } from '@/components/animations'
-
-export function HeroMarquee() {
-  const { t } = useT('home')
-  
-  const marqueeItems = t('hero.marqueeItems', { returnObjects: true }) as string[]
-
+export function HeroMarquee({ items, pauseLabel, resumeLabel }: { items: string[]; pauseLabel: string; resumeLabel: string }) {
   return (
-    <div className="w-full bg-surface/80 py-4 backdrop-blur-sm sm:py-5">
-      <Marquee speed={40} gap={32} pauseOnHover className="text-sm font-medium text-muted sm:text-base">
-        {marqueeItems.map((item, index) => (
+    <div className="author-marquee w-full py-4 sm:py-5">
+      <Marquee speed={40} gap={32} pauseOnHover pauseLabel={pauseLabel} resumeLabel={resumeLabel} className="text-sm font-medium text-muted sm:text-base">
+        {items.map((item, index) => (
           <MarqueeItem key={`${item}-${index}`} text={item} />
         ))}
       </Marquee>

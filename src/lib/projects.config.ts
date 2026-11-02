@@ -10,6 +10,8 @@ export interface ProjectConfig {
   category: ProjectCategory;
   liveUrl?: string;
   screenshotUrl?: string;
+  /** Versioned public artwork; independent of the external screenshot service. */
+  coverImage?: string;
   tags: string[];
   accentColor?: string;
   featured?: boolean;
@@ -22,6 +24,7 @@ export interface ProjectConfig {
 export const projectsConfig: ProjectConfig[] = [
   {
     id: "jpm",
+    coverImage: "/images/projects/jpm.jpg",
     category: "platform",
     repo: "ShanderPH/jpm",
     size: "featured",
@@ -33,6 +36,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "br-masters",
+    coverImage: "/images/projects/br-masters.jpg",
     category: "product",
     repo: "ShanderPH/br-masters",
     size: "featured",
@@ -44,6 +48,7 @@ export const projectsConfig: ProjectConfig[] = [
   },
   {
     id: "inchurch-knowledge",
+    coverImage: "/images/projects/inchurch-knowledge.jpg",
     category: "platform",
     repo: "ShanderPH/inchurch-knowledge",
     size: "featured",
