@@ -14,6 +14,12 @@
   "highlights": "Highlights",
   "close": "Close",
   "items": {
+    "jpm": {
+      "title": "JPM — João Paulo Machado, Lda",
+      "description": "Business website for a Portuguese wood and wood products company, with services, project gallery, and a quote request experience.",
+      "longDescription": "Commercial website for João Paulo Machado, Lda, based in Portugal. The experience presents the company and its services, showcases work in a visual gallery, supports responsive navigation, and includes a contact form for quotation requests.",
+      "stackDescription": "Web application using Next.js and TypeScript, responsive components, internationalization, and a Resend email integration for quotation requests."
+    },
     "br-masters": {
       "title": "BR Masters",
       "description": "Brazilian football prediction platform with rankings, XP/level system, prize pools, and FIFA/EA FC-inspired themes.",
